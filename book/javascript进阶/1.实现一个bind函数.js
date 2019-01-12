@@ -15,3 +15,13 @@ Function.prototype.bind = function(context) {
         that.apply(context, thearguments);
     }
 }
+
+Function.prototype.bind = function() {
+    var args = Array.prototype.slice.call(argument);
+    var context = args.splice(0, 1)[0];
+    var that = this;
+    return function() {
+        var newargs = Array.prototype.slice.call(argument);
+        that.apply(context, args.concat(newargs));
+    }
+}

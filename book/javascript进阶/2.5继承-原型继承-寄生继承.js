@@ -9,7 +9,7 @@ var animal = {
 // 目标是简化继承，让一个对象方便的和另一个对象保持相似
 function object(o) {
     function F(){};
-    F,prototype = o;
+    F.prototype = o;
     return new F();
 } 
 

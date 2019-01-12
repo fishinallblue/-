@@ -17,6 +17,8 @@ var Cat = function(tail) {
 }
 Cat.prototype = new Animal();
 // 这话啥意思
+// ca=t.prototype = new Animal 这一步其实相当于将cat的原型指向给破坏了
+
 Cat.prototype.constructor = Cat;
 
 
