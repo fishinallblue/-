@@ -1,4 +1,9 @@
+// 解决的问题是1.回调地狱  2.多个异步请求在同一个时间合并结果
+// promise是自带的，使用的时候要new
+// promise承诺，需要传递一个executor执行器，他是同步执行的
+
 const promise = new Promise(function(resolve, reject) {
+    // 这个方法是同步执行的
     if (/*异步操作成功*/) {
         resolve(value)
     } else {
@@ -7,10 +12,13 @@ const promise = new Promise(function(resolve, reject) {
 })
 // 使用then来指定resolved状态和rejected状态的回调函数。
 promise.then(function(value) {
-    // resolve
+    // resolve  成功的函数
 }, function(error) {
-    // failure
+    // failure  失败的函数
 })
+
+//  prmoise 中有三个状态
+// 默认是pedding状态 resolved 成功态  
 
 // 用promise加载异步的图片
 function loadImageAsyc(url) {

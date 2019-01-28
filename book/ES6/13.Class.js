@@ -6,10 +6,11 @@ class Point {
     }
 // 定义类方法的时候，前面不需要
     toString() {
+        // this指向当前实例
         return `x: ${this.x} , y: ${this.y}`;
     }
 }
-
+// 构造函数只能通过new来构造，不能直接调用
 let smallPoint = new Point(1, 2);
 console.log(smallPoint.toString());
 

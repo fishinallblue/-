@@ -11,6 +11,7 @@ class Point{
     }
 
 }
+// 
 class ColorPoint extends Point {
     constructor(x, y, color) {
         super(x, y)
