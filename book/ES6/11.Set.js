@@ -68,3 +68,28 @@ console.log(set.delete(14));
 console.log(set.value);
 console.log(set.clear());
 console.log(set.value);
+
+// 数组去重
+let arr = [1,2,34,45,5,6,6]
+let s = new Set(arr)
+console.log(s)
+
+// 数组并集
+let arr1 = [1, 2, 3]
+let arr2 = [3, 4, 5]
+let s1 = new Set([...arr1, ...arr2])
+console.log([...s1])
+
+// 数组交集
+let s2 = new Set(arr1);
+let s3 = new Set(arr2);
+let result = [...s2].filter((item) => {
+    return s3.has(item);
+})
+console.log(result)
+
+// 数组补集
+let result1 = [...s2].filter((item) => {
+    return !s3.has(item);
+})
+console.log(result1)

@@ -12,3 +12,5 @@ var Map= function() {
         value: 'Map里面的value'
     }]
 }
+
+let map 
