@@ -120,3 +120,4 @@ p.then(function() {
 // Promise.resolve() ：将现有的对象转换成为Promise对象
 
 // Promise.try() : 不需要考虑是不是异步的，包一层，异步的可用then处理，同步的就直接执行了
+
