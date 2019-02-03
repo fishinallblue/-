@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 加上cookie
+        document.cookie="name=hejun"
+        let xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.open('GET', 'http://localhost:5000/getData', true);
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4) {
+                if (xhr.status >=200 && xhr.status < 300 || xhr.status == 304) {
+                    console.log(xhr.response)
+                    // 获取设置的cookie
+                    console.log(xhr.response.headers.name)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

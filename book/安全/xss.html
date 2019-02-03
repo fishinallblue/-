@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    不基于后端的dom-base xss攻击
+    现在是这样一个功能：输入一个图片网址，自动插入图片
+    那么，在图片网址的问题上，就有了一些可操作的空间
+    <input type="text" name="" id="web"> <button id="add">添加图片</button>
+    <div class="box" id="box"></div>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+
+    <script>
+        // 如果在输入框中输入 xxx" onerror="alert(1)" id="
+        // 就相当于注入了一段恶意的脚本
+        // 攻击的内容，叫做xss payload
+        $("#add").click(function() {
+            $('.box').html(`<img src="${$('#web').val()}">`)
+        })
+    </script>
+</body>
+</html>

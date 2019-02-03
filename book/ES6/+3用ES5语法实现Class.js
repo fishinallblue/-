@@ -1,17 +1,27 @@
-// es6 的类都是通过new来实现的
-// 首先，检测一下是否通过new
-// 基本的思想就是在外面套上一层判断的函数
+// 首先明确es5和es6 class定义对象的区别
+
+// ① class的构造函数必须使用new进行调用，普通构造函数不用new也可执行。
+// ② class不存在变量提升，es5中的function存在变量提升。
+// ③ class内部定义的方法不可枚举，es5在prototype上定义的方法可以枚举
+
+
+
+// 所以首先，检测一下是否通过new
 // es5 实现class
+// 1.对new方法进行判定
 function _calssCallCheck(sub ,constr) {
     if (!(sub instanceof constr)) {
         throw new Error('必须通过new')
     }
 }
+
 function defineProperties(target, props) {
     for(let i=0; i< props.length; i++) {
-        Object.defineProperty(target, key,{
-            value: props[i].value
-        })
+        var descriptor = props[i]; 
+         // 默认不可枚举
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.value = props[i].value;
+        Object.defineProperty(target, key, descriptor)
     }
 }
 

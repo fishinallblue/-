@@ -20,7 +20,7 @@ obj4.name.schoolname = 'jd';
 let obj6 = {name: {age: 1}}
 let obj7 = JSON.parse(JSON.stringify(obj6))
 console.log(obj7)
-// 会丢失undefin
+// 会丢失undefined
 obj6 = {name: {age: 1}, reg: undefined}
 obj7 = JSON.parse(JSON.stringify(obj6))
 console.log(obj7)

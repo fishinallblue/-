@@ -4,7 +4,7 @@ let r = [1,2,3].reduce((prev, next, current, arr) => {
     return prev + next;
 })
 console.log(r)
-
+// reduce 的第三个参数，传入一个prev的初始值
 let r1 = [{price: 1, count: 4},{price: 2, count: 5},{price: 3, count: 6}].reduce((prev, next, current, arr) => {
     return prev + next.price * next.count;
 }, 0)

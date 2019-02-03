@@ -25,3 +25,15 @@ Function.prototype.bind = function() {
         that.apply(context, args.concat(newargs));
     }
 }
+
+// 不用call自己实现bind
+Function.prototype.bind = function(context) {
+    context = context ? context : window;
+    let args = [...arguments].slice(1);
+    var _this = this;
+    return function() {
+        let arg = arguments;
+
+        _this.call(context, ...args, ...arg);
+    }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    websocket是一个高级的API 不兼容，使用socket.io进行兼容
+    <script>
+        let scoket  = new WebSocket('ws://localhost:3000')
+        scoket.onopen = function() {
+            scoket.send('wo ai ni')
+        }
+
+        scoket.onmessage = function(e) {
+            console.log(e.data)
+        }
+    </script>
+</body>
+</html>

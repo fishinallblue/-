@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=a, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    a 和 b是同域的，http://localhost:3000
+    c是独立的http://localhost:4000
+    a 想要获取C的数据
+    a 先引用C，C把值放到window.name ,a把引用的地址改到b
+
+    <iframe src="http://localhost:4000/c.html" onload="load()"></iframe>
+    <script>
+        let script = true;
+        function load() {
+            if(first) {
+                let iframe = document.getElementById('iframe');
+                iframe.src = 'http://localhose:3000/b.thml';
+                first = false;
+            } else {
+                console.log(ifram.contentWindow.name)
+            }
+
+        }
+    </script>
+</body>
+</html>

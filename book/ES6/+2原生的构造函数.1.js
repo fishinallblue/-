@@ -18,7 +18,7 @@ console.log(cat.type)
 
 // 2.继承父类的公共属性
 // 下面三种写法相同  --------> 三种方法都十分的重要
-
+// Object.create 第三个参数是要添加到新创建对象的可枚举属性
 Cat.prototype.__proto__ = Animal.prototype;
 Object.setPrototypeOf(Cat.prototype, Animal.prototype)
 Cat.prototype = Object.create(Animal.prototype, {constructor: {value: Cat}})
