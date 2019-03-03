@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        全选 <input type="checkbox" v-model="checkAll">
+        <input type="checkbox" v-for="(item,key) in checks" v-model="item.value">
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <!-- computed 和 watch的区别   watch 可以支持异步，computed 不支持-->
+    <!-- watch 可以实现一些比较简单的功能，比如某个数据一改就调用某个函数 但是尽量要用computed 实现 -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            // template: '<h1>test</h1>',
+            data: {
+                checks:[{value: true},{value: false},{value: true} ]
+            },
+            computed: {
+                checkAll: {
+                    get() {
+                        return this.checks.every((check) => {
+                            return check.value;
+                        })
+                    },
+                    set(value) { // 双向绑定数据
+                        this.checks.forEach(element => {
+                            element.value = value;
+                        });
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

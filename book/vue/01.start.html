@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ arr }}
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- 只要模板中使用了数据，必须在实例中声明 -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            // template: '<h1>test</h1>',
+            data: {
+                msg: 'hello',
+                info: {
+                    xxx: 'ddd'
+                },
+                arr: [1,2,3,4]
+            }
+        })
+        // 把数据都代理给了VM
+        vm.$set(vm.info, 'address', 'add')
+        // vue 实例上面的方法有
+        vm.$el  // 表示当前挂在的元素
+        console.log(vm.$el.innerHTML)
+        vm.$options  // 表示当前的选项
+
+        vm.arr = [4,5,6]
+        vm.arr = [7,8,9]
+        // 数据变化后更新视图，是一个异步的操作
+        // 所以数据变化后输出 vm.$el 还是原本的视图，而不是新的视图
+        // 所以我们希望更新视图以后再获取 vm.$el这个视图
+        // 需要用到我们长听见的
+        vm.$nextTick(() => {
+            console.log(vm.$el.innerHTML)
+            // 可以对比两次的输出结果
+        })
+
+        // 监控方法
+        vm.$watch('info.xxx', (newValue, oldValue) => {
+            console.log(newValue, oldValue);
+        })
+
+        info.xxx = '124';
+        info.xxx = '145624';
+
+        // 连续的两次更改，只会触发一次watch
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-once 对数据进行缓存，使用的都是缓存里面的东西 -->
+        <div v-once>{{ msg }}</div>
+        <!-- v-html innerhtml xss攻击 不能将用户输入的内容直接输出出来 必须保证内容是可信任的-->
+        <div v-html="a"></div>
+        <!-- 如果if里面的条件不成立，那么if这个元素直接没有 -->
+        <!-- 注意 if 和 else 之间不能插入其他的同级元素 -->
+        <div v-if="msg">if</div>
+        <div v-else>else</div>
+
+        <template v-if="msg">
+            <div>1</div>
+            <div>2</div>
+        </template>
+        <div v-else>4</div>
+
+        <!-- v-if 控制的是DOM是否显示
+        v-show 控制的是样式 display:none  不支持template -->
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- 只要模板中使用了数据，必须在实例中声明 -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            // template: '<h1>test</h1>',
+            data: {
+                msg: 'hello',
+                info: {
+                    xxx: 'ddd'
+                },
+                a: '<h1>hejun</h1>',
+                arr: [1,2,3,4]
+            }
+        })
+
+    </script>
+</body>
+</html>

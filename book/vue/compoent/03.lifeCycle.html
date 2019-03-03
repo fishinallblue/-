@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ a }}
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <!-- computed 和 watch的区别   watch 可以支持异步，computed 不支持-->
+    <!-- watch 可以实现一些比较简单的功能，比如某个数据一改就调用某个函数 但是尽量要用computed 实现 -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            // template: '<h1>test</h1>',
+            data: {
+                a: 1
+            },
+            beforeCreate() {
+                console.log(this.$data); // 初始化自己的生命周期，并且绑定事件
+            },
+            created() { // 如果想调用ajax，就在这里调用
+                console.log(this.$data); // 可以获取数据和调用方法
+                // 不能够获取到渲染完的结果  这个时候$el还没有呢
+                // console.log(this.$el.innerHTML)
+            },
+            beforeMount() { // 第一次调用渲染函数之前
+                // 挂载元素之前
+                // 渲染之前
+                // 这个时候还是灭有this.$el
+            },
+            mounted() { 
+                // 也可以调用ajax
+                // 渲染之后  获取真实的DOM 这个时候页面已经渲染完了
+                console.log(this.$el.innerHTML)
+            },
+            beforeUpdate() {
+                console.log('更新前')
+            },
+            updated() {
+                // 一般 不要操作数据，会导致死循环
+            },
+            beforeDestory() {
+                // 主要是做一些定时器清除和解绑操作
+                // 路由切换可能会导致销毁
+                // 也可以调用vm.$destroy 进行手动销毁
+            },
+            destroyed() {
+
+            }
+        })
+
+    </script>
+</body>
+</html>

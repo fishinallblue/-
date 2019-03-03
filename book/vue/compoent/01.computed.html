@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ getFullName() }}
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <!-- computed 和 watch的区别   watch 可以支持异步，computed 不支持-->
+    <!-- watch 可以实现一些比较简单的功能，比如某个数据一改就调用某个函数 但是尽量要用computed 实现 -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            // template: '<h1>test</h1>',
+            data: {
+                firstName: 'he',
+                lastName: 'jun',
+                testData: 'test',
+                fullName: ''
+            },
+            watch: { // 只有数据在变得时候才会触发，所以第一次进入页面的时候这两个方法不会触发
+                firstName(newValue) {
+                    getFullName()
+                },
+                lastName: {
+                    handler() {
+
+                    }
+                }
+            },
+            computed: {// 通过Object.defineProperty实现的
+                fullName() {// 这是一个get方法,有缓存，如果值灭有更改，会从缓存中取值
+                    console.log('打发斯蒂芬');
+                    return this.firstName + this.lastName;
+                }
+
+            },
+            methods: {
+                getFullName() {
+                    console.log('llll');
+                    // 会发现，这个方法不仅改firstName或者lastName的时候会执行
+                    // 就算是改testData也会执行
+                    return this.firstName + this.lastName;
+                }
+            },
+            mounted() {
+
+            }
+        })
+
+    </script>
+</body>
+</html>

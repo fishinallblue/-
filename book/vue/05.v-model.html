@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @input="fn($event, 1)">
+        {{ msg }}
+        <!-- 写起来太麻烦了，来个语法糖 v-model -->
+        <input type="text" v-model="msg1">
+        {{ msg1 }}
+
+        <select name="" id="" v-model="selectValue">
+            <option v-for="(item, index) in selectdta" :value="item.id">{{ item.value }}</option>
+        </select>
+
+        {{ selectValue }}
+        <br>
+        男<input type="radio" v-model="radioValue" value="男">
+        女<input type="radio" v-model="radioValue" value="女">
+        <br>
+        {{ radioValue }}
+
+        <br>
+        游泳<input type="checkbox" v-model="checkValues" value="游泳">
+        健身<input type="checkbox" v-model="checkValues" value="健身">
+        {{ checkValues }}
+
+        <!-- 修饰符 .number .trim -->
+        <input type="text" v-model.number="msg1">{{ typeof msg1}}
+
+        <!-- 修饰符 键盘修饰符 鼠标修饰符  @keyup.enter-->
+
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- 双向绑定 数据变化，视图更新，视图更新，数据也会变化 -->
+    <script>
+        let vm = new Vue({
+            // template: '<h1>test</h1>',
+            data: {
+                msg: 'ad',
+                msg1: '12',
+                selectValue: 2,
+                radioValue: '男',
+                checkValue: '',
+                checkValues: [],
+                selectdta: [{id: 1, value: '菜单1'}, {id: 2, value: '菜单2'}],
+                fn1: function() {
+                    // 方法不能够放到data中，因为这个this指向的是window
+                    console.log(this)
+                }
+            },
+            methods: {
+                fn(e, a) {
+                    // 声明的时候不要使用箭头函数，this会指向window
+                    this.msg = e.target.value;
+                }
+            } 
+        }).$mount('#app')
+
+        // 单元测试
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 循环谁就把for放到谁的身上
+        vue 2.5以上要求，必须有个key属性 -->
+        <div v-for="(item, index) in arr" :key="index">
+            {{ item }} {{ index }}
+        </div>
+        <div v-for="(item, index) in info">
+            {{ item }}
+        </div>
+        <!-- 注意几种品字符串的方法 -->
+        <template v-for="(item, index) in info">
+            <div :key="index + 'aaaa'" :a="index + 'aaaa'">{{ item }}</div>
+            <div :key="`${index}bbb`" :a="`${index}bbb`">{{ item }}</div>
+        </template>
+        <!-- 注意下面的操作，修改flag的值，会发现input里头输入的内容一直没有变化 -->
+        <!-- 解决的办法就是 在input里面加上 key -->
+        <div v-if="falg">
+            <span >何隽</span>
+            <input type="text">
+        </div>
+        <div v-else>
+            <span >name</span>
+            <input type="text">
+        </div>
+
+        <!-- 解决的办法就是 在input里面加上 key -->
+        <div v-if="falg">
+            <span>何隽</span>
+            <input type="text" key="1111">
+        </div>
+        <div v-else>
+            <span >name</span>
+            <input type="text" key="222">
+        </div>
+
+        <!-- 尽量不要使用index作为key -->
+        <!-- 如果有唯一的标识，尽量使用唯一的标识 -->
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- 只要模板中使用了数据，必须在实例中声明 -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            // template: '<h1>test</h1>',
+            data: {
+                msg: 'hello',
+                info: {
+                    xxx: 'ddd',
+                    name: 'dfsa'
+                },
+                a: '<h1>hejun</h1>',
+                arr: [1,2,3,4],
+                falg: true
+            }
+        })
+
+    </script>
+</body>
+</html>

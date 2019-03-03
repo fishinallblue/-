@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 组件化开发 方便协作 方便维护 可以复用 数据是根据传入的数据进行展示的 -->
+    <!-- 组件的定义方式  1.全局组件  2.局部组件 -->
+    <div id="app">
+        {{ a }}
+        <!-- 子组件在父组件的模板中使用 -->
+        <!-- 如果想在父级中绑定事件给组件，需要使用.native 不加就认为是一个普通属性-->
+        <!-- <my-button @click.natvie="change"></my-button> -->
+
+
+        <!-- 如果儿子想要调用父亲的方法，那么有三种方式 -->
+        <my-button @click="change"  @mouseup="change"></my-button>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 这是全局组件
+        // Vue.component('my-button', {
+        //     data() { // 为了每个组件的数据互不影响
+
+        //     },
+        //     template: '<button>点我啊</button>'
+        // })
+        let vm = new Vue({  // 根实例
+            el: '#app',
+            // template: '<h1>test</h1>',
+            data: {
+                a: 1
+            },
+            methods: {
+                change() {
+                    alert(1);
+                }
+            },
+            // 这是局部组建
+            components: {
+                'MyButton': {
+                    // template: '<button>点我啊</button>'
+                    // 使用v-on=$listeners 批量的添加函数
+                    template: `<div>
+                            <button @click="$listeners.click">点我啊</button>
+                            <button @click="$emit('click')">点我啊</button>
+                            <button v-on="$listeners">点我啊</button>
+                        </div>
+                    `
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

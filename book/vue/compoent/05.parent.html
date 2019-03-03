@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ a }}
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({  // 根实例
+            el: '#app',
+            // template: '<h1>test</h1>',
+            data: {
+                a: 1
+            },
+            methods: {
+                change() {
+                    alert(1);
+                }
+            },
+            // 这是局部组建
+            components: {
+                'MyButton': {
+                    // template: '<button>点我啊</button>'
+                    // 使用v-on=$listeners 批量的添加函数
+                    template: `<div>
+                            <button @click="$listeners.click">点我啊</button>
+                            <button @click="$emit('click')">点我啊</button>
+                            <button v-on="$listeners">点我啊</button>
+                        </div>
+                    `
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
