@@ -1,7 +1,7 @@
 /*
  * @Author: hediahe
  * @Date: 2022-08-07 17:20:22
- * @LastEditTime: 2022-08-07 18:19:34
+ * @LastEditTime: 2022-08-28 18:06:48
  * @LastEditors: hediahe
  * @Description: 
  */
@@ -9,6 +9,51 @@
 let code = '<h1 id="title"><span>hello</span>world</h1>';
 console.log(JSON.stringify(parser(code), null, 2));
 */
+
+'let a = 1; a = a ++'
+
+let age
+
+age >= 45
+
+const name = 'test' + 1
+
+// babel 的遍历相关代码
+// https://github.com/babel/babel/blob/main/packages/babel-traverse/src/traverse-node.ts
+export function traverseNode(
+    node: t.Node,
+    opts: TraverseOptions,
+    scope?: Scope,
+    state?: any,
+    path?: NodePath,
+    skipKeys?: Record<string, boolean>,
+  ): boolean {
+    // 获取遍历节点
+    const keys = VISITOR_KEYS[node.type];
+    if (!keys) return false;
+    const context = new TraversalContext(scope, opts, state, path);
+    // 逐个开始遍历
+    for (const key of keys) {
+      if (skipKeys && skipKeys[key]) continue;
+      if (context.visit(node, key)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+tokens = [
+  { type: 'Keyword', value: 'let' },
+  { type: 'Identifier', value: 'a' },
+  { type: 'Punctuator', value: '=' },
+  { type: 'Numeric', value: '1' },
+  { type: 'Punctuator', value: ';' },
+  { type: 'Identifier', value: 'a' },
+  { type: 'Punctuator', value: '=' },
+  { type: 'Identifier', value: 'a' },
+  { type: 'Punctuator', value: '++' }
+]
+
 const { tokenizer } = require('../tokenizer');
 const tokenTypes = require('./tokenTypes');
 const nodeTypes = require('./nodeTypes');
