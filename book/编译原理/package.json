@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "esprima": "^4.0.1",
+    "estraverse-fb": "^1.3.2"
+  }
+}
