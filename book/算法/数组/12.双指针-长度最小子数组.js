@@ -36,6 +36,10 @@ var minSubArrayLen = function(target, nums) {
             i = i + 1;
           }
         }
+      } else {
+        if (plus < target) {
+          return count
+        }
       }
     }
   }
