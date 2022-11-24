@@ -46,4 +46,4 @@ var minSubArrayLen = function(target, nums) {
   console.log('count', count)
   return count;
 };
-minSubArrayLen(7, [2,3,1,2,4,3])
+minSubArrayLen(11, [1,2,3,4,5])
