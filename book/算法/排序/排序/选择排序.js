@@ -27,3 +27,20 @@ function sort(arr) {
 }
 console.log(sort([5, 6, 3, 1, 8, 7, 2, 4]))
 
+// 2022 年 12月
+function sort1(arr) { 
+    for(let i = 0; i< arr.length; i++) {
+        let min = arr[i];
+        let pos = i;
+        for(let j = i+1; j<arr.length; j ++) {
+            if (arr[j] < min) {
+                min = arr[j]
+                pos = j;
+            }
+        }
+        arr[pos] = arr[i];
+        arr[i] = min;
+    }
+    return arr
+}
+console.log(sort1([5, 6, 3, 1, 8, 7, 2, 4]))

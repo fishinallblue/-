@@ -31,5 +31,28 @@ function sort(arr) {
     }
     return result;
 }
-console.log(sort([5, 6, 3, 1, 8, 7, 2, 4]))
-
+console.log(sort1([5, 6, 3, 1, 8, 7, 2, 4]))
+// 2022年12月
+// 基于当前数组的插入排序
+function sort1(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    for(let i = 1; i< arr.length; i++) {
+        let j = i-1;
+        let temp = arr[i];
+        while(j>= 0) {
+            if (arr[j] > temp) {
+                arr[j + 1] = arr[j]
+                j--
+                if (j === -1) {
+                    arr[0] = temp;
+                }
+            } else {
+                arr[j + 1] = temp;
+                break;
+            }
+        }
+    }
+    return arr;
+}

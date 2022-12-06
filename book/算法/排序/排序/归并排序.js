@@ -58,6 +58,49 @@ function sort(arr) {
     mSort(arr, 0, len-1);
     return arr;
 }
-console.log(sort([5, 6, 3, 1, 8, 7, 2, 4]))
 
 // 真的好难啊，不会
+// 2022年 12月
+// 这个性能差一点，想一想性能好一些的
+const sort1 = (arr) => {
+    if (arr.length <= 2) {
+        if (arr.length === 2) {
+            if (arr[0] > arr[1]) {
+                const temp = arr[1]
+                arr[1] = arr[0]
+                arr[0] = temp
+            }
+        }
+        return arr;
+    } else {
+        let mid = parseInt(arr.length / 2);
+        let left = arr.splice(0, mid)
+        let right = arr;
+        return conbineSort(sort1(left), sort1(right))
+    }
+
+} 
+
+const conbineSort = (left, right) => {
+    let res = []
+    let i = 0; j = 0;
+    while(i< left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            res.push(left[i])
+            i++
+        } else {
+            res.push(right[j])
+            j++
+        }
+    }
+    while(i< left.length ) {
+        res.push(left[i])
+        i++
+    }
+    while(j< right.length ) {
+        res.push(right[j])
+        j++
+    }
+    return res;
+}
+console.log(sort1([5, 6, 3, 1, 8, 7, 2, 4]))
