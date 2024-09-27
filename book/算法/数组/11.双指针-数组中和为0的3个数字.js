@@ -32,3 +32,40 @@ var threeSum = function(info) {
   }
   return res;
 };
+
+
+function threeSum1(nums) {
+  let res = [];
+  nums.sort((i, j) => { return i - j });
+  for(let i = 0; i<= nums.length - 3; i++) {
+      let start = i+1;
+      let end = nums.length - 1;
+      while(start < end) {
+          const plus = nums[start] + nums[end] + nums[i]
+          if (plus === 0) {
+              res.push([nums[i], nums[start], nums[end]]);
+              let tempstart = start;
+              let tempend =  end;
+              start ++;
+              end --;
+              while (start < end && nums[start] === nums[tempstart]) {
+                  start ++;
+              }
+
+              while (end > start && nums[end] === nums[tempend]) {
+                  end --;
+              }
+          } else if (plus > 0) {
+              end --;
+          } else {
+              start++ ;
+          }
+      }
+      while (i<= nums.length - 3 && nums[i] === nums[i+1]) {
+          i++;
+      }
+  }
+  return res;
+};
+
+threeSum1([-1,0,1,2,-1,-4,-2,-3,3,0,4])

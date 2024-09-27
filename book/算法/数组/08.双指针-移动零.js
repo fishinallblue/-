@@ -1,4 +1,4 @@
-// 题目描述：https://leetcode.cn/problems/remove-duplicates-from-sorted-array/
+// 题目描述：https://leetcode.cn/problems/move-zeroes/description/
 /**
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.

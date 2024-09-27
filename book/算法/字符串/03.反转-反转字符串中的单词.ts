@@ -1,4 +1,5 @@
 // 题目描述： https://leetcode.cn/problems/reverse-words-in-a-string/
+// https://leetcode.cn/problemsf/fan-zhuan-dan-ci-shun-xu-lcof/description/
 /**
  * @param {string} s
  * @return {string}
@@ -27,9 +28,12 @@ var reverseWords = function(s) {
 };
 console.log(reverseWords('  hello   word!  '))
 
-// 其他思路
-// 所以解题思路如下：
+// 更简单的的解法
+function reverseWords3(s: string): string {
+  return s.split(' ').reverse().join(' ')
+}
 
+// 剑指 offer 的思路：
 // 移除多余空格
 // 将整个字符串反转
 // 将每个单词反转

@@ -33,8 +33,8 @@ var minSubArrayLen1 = function(target, nums) {
 var minSubArrayLen = function(target, nums) {
   let count = 0;
   if (nums?.length) {
-    let res = nums[0], k = i+1;
-    for(let i = 0; i< nums.length; i++) {
+    let res = nums[0],i = 0, k = 1;
+    for(i = 0; i< nums.length; i++) {
       while(res < target) {
         res = res + nums[k]
         k++

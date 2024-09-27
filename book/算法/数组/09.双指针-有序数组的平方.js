@@ -21,4 +21,36 @@ var sortedSquares = function(nums) {
   return target
 };
 
-sortedSquares([-7,-3,2,3,11])
+// sortedSquares([-7,-3,2,3,11])
+function sortedSquares2(nums) {
+  let minIndex = 0;
+  let res = [];
+  for(let i = 0; i< nums.length; i++) {
+      if (i < nums.length -1 && Math.abs(nums[i]) > Math.abs(nums[i+1])) {
+          minIndex = i+1;
+      }
+      nums[i] = nums[i] * nums[i];
+  }
+  res.push(nums[minIndex])
+  let i = minIndex - 1;
+  let j = minIndex + 1;
+  while(i >=0 || j < nums.length) {
+      if (i >=0 && j< nums.length) {
+          if(nums[i] < nums[j]) {
+              res.push(nums[i]);
+              i--;
+          } else {
+              res.push(nums[j]);
+              j++;
+          }
+      } else if (i >= 0){
+          res.push(nums[i])
+          i--
+      } else {
+          res.push(nums[j])
+          j++
+      }
+  }
+  return res;
+};
+sortedSquares2([-7,-3,2,3,11])
