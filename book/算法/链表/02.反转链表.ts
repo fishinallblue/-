@@ -21,3 +21,19 @@ function reverseList(head: ListNode | null): ListNode | null {
   }
   return newHead;
 };
+
+// 2024.10.29 半小时A出，没有使用新的head，旧的head改造的
+function reverseList1(head: ListNode | null): ListNode | null {
+  if (!head || !head.next) {
+    return head;
+  }
+  let next = head.next;
+  head.next = null;
+  while(next) {
+    let nnext = next.next;
+    next.next = head;
+    head = next;
+    next = nnext;
+  }
+  return head;
+};

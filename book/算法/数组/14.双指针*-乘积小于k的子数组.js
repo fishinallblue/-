@@ -26,4 +26,25 @@
   return count;
 };
 
-console.log('count', numSubarrayProductLessThanK([10,5,2,6], 100))
+// 2024年更新
+// 还是不会，写一天都没写出来
+function numSubarrayProductLessThanK2(nums, k) {
+  let count = 0;
+  
+  let result = nums[0];
+  for(let start = 0, end = 0; start < nums.length; start++) {
+    while(result < k && end < nums.length - 1) {
+        end ++;
+        result = result * nums[end];
+    }
+    if (result < k) {
+      count = count + end - start + 1;
+    } else {
+      count = count + end - start;
+    }
+    result = result / nums[start];
+  }
+  return count;
+
+};
+console.log('count', numSubarrayProductLessThanK2([10,5,2,6], 100))
