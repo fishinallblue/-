@@ -8,3 +8,10 @@ function create() {
     let result = Con.apply(obj, arg);
     return result instanceof Object ? result : obj;    
 }
+
+// 2024.10.30
+function new1(Fn, ...args) {
+    let o = {};
+    o.__proto__ = Fn.prototype // 这一步感觉理解还是不深入
+    return Fn.call(o, ...args);
+}

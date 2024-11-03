@@ -24,6 +24,40 @@ var obj = {
 }
 console.log(clone(obj))
 
+// 2024.10.30
+function clone1 (o) {
+    if (o instanceof RegExp) {
+        return new RegExp(o.source, o.flags); // 这个可能记不住
+    }
+    if (o instanceof Date) {
+        return new Date(o);
+    }
+    if (typeof o === 'function') {
+        return function(...args) {
+            return o.call(this, ...args);
+        }
+    }
+    if (o === null) {
+        return o;
+    }
+    if (typeof obj !== 'object') return obj;  // 普通常量直接返回
+    let newObj = new o.constructor;
+    // 如果key 值是symbol的，是没办法被for in 遍历到的
+    // 所以要单独处理symbol的情况
+    const symbolKeys = Object.getOwnPropertySymbols(o);
+    symbolKeys?.forEach?.((key) => {
+        newObj[key] = deepClone(obj[key]);
+    })
+
+    for(let i in o) {
+        if (o.hasOwnProperty(i)) { // 这一步很重要，不要拷贝原型链上面的属性，for in 会自动遍历原型链的
+            newO[i] = clone1(o[i]);
+        }
+    }
+    return newO;
+
+}
+
 
 function parse(data) {
     let number = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];

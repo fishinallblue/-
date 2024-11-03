@@ -27,3 +27,13 @@ Cat.prototype.constructor = Cat;
 问题：
 1.调用了两次父类构造函数，生成了两份实例
  */
+
+
+// 2024.10.30
+var Cat1 = function(tail) {
+    Animal.call(this);
+    this.tail = tail
+}
+Cat1.prototype = new Animal();
+
+Cat1.prototype.constructor = Cat;

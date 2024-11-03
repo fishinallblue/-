@@ -1,4 +1,5 @@
 // 题目描述：https://leetcode.cn/problems/design-linked-list/
+// https://leetcode.cn/problems/SLwz0R/
 // 本题的思路是使用快慢指针
 class ListNode {
   public val: number;
@@ -34,3 +35,5 @@ var removeNthFromEnd = function(head, n) {
 
   return head;
 };
+
+// 2024.10.30

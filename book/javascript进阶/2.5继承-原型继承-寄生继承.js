@@ -29,3 +29,10 @@ function jisheng(o) {
     }
     return result;
 }
+
+// 2024.10.30
+function create1 (o) {
+    let Fn = function(){};
+    F.prototype = o; // 依然是这一步记不住
+    return new Fn();
+}

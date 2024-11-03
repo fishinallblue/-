@@ -47,7 +47,6 @@ function throttle(func,wait, options) {
 
 // 接下来继续加要求
 // leading: true 表示第一次点击不执行
-
 function throttle(func,wait, options) {
     let previous = 0;
     let args, context, timeout;
@@ -76,7 +75,6 @@ function throttle(func,wait, options) {
 }
 
 // 防抖动： 狂点的时候不触发，松手的时候才触发
-
 function debounce(func, wait) {
     let timeout ;
     return function() {
@@ -88,7 +86,6 @@ function debounce(func, wait) {
 }
 // 有个bug，第一次点的时候并没有触发
 // 第三个参数表示的就是首次先触发一次
-
 function debounce(func, wait, immidate) {
     let timeout ;
     return function() {

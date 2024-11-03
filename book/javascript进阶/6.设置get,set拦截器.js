@@ -17,6 +17,6 @@ Object.defineProperty(obj, 'name', {
 });
 
 // es6的方式设置拦截器 => proxy 仔细看proxy的书籍
-
 obj.name;
 obj.name = 'hhh';
+

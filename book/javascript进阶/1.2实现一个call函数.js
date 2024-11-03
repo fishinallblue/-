@@ -37,3 +37,11 @@ fn.call(test, 2)
 // 自己实现的函数还是有一些问题，比如参数的问题
 
 fn.call1(test, 2)
+
+// 2024.10.30实现
+Function.prototype.call = function(context = window, ...args) {
+    context.fn = this;
+    const res = context.fn(...args);
+    delete context.fn;
+    return res;
+}

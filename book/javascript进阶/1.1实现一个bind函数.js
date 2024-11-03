@@ -37,3 +37,12 @@ Function.prototype.bind = function(context) {
         _this.call(context, ...args, ...arg);
     }
 }
+
+// 2024.10.30
+Function.prototype.bind = function(context = window, ...arggs) {
+    let fn = this;
+    return function(...args) {
+        const res = fn.call(context, ...arggs, ...args);
+        return res;
+    };
+}

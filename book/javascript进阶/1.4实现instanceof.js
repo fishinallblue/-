@@ -9,3 +9,14 @@ function instanceofFn(a, b) {
         instanceofFn(s, b);
     }
 }
+
+// 2024.10.30
+function instanceOf(a,b) {
+    if (a.__proto__ === null) {
+        return false;
+    } else if (a.__proto__ === b.prototype) {
+        return true;
+    } else {
+        return instanceOf(a.__proto__, b);
+    }
+}

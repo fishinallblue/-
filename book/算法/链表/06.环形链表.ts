@@ -1,4 +1,5 @@
 // 题目描述：https://leetcode.cn/problems/linked-list-cycle-ii/
+//https://leetcode.cn/problems/c32eOV/description/
 class ListNode {
   public val: number;
   public next: ListNode | null = null;

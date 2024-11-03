@@ -25,3 +25,8 @@ Cat.prototype = new Animal('cat');
 
 所以实际的运用很少使用原型链
  */
+
+
+
+// 2024.10.30
+Cat.prototype = new Animal('cat');

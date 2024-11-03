@@ -27,3 +27,10 @@ var Cat = function(tail) {
 2. 只能继承父类实例属性和方法，不能继承父类的原型属性和方法
 3. 无法实现函数复用，每个子类都拥有一份单独的父类实例副本
  */
+
+
+// 2024.10.30
+var Cat1 = function(tail) {
+    Animal.call(this);
+    this.tail = tail
+}
