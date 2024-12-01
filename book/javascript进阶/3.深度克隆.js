@@ -58,6 +58,43 @@ function clone1 (o) {
 
 }
 
+// 2024.11.21
+const deepClone = (temp) => {
+    let res;
+    if (Array.isArray(temp)) {
+        res = []
+        for(let i = 0; i< temp.length; i++) {
+            res.push(deepClone(temp[i]));
+        }
+    } else if (temp instanceof Date) {
+        return new Date(temp);
+    } else if (temp instanceof RegExp) {
+        return new RegExp(temp.source, temp.flags);
+    } else if (typeof temp === 'function') {
+        return function(...args) {
+           return temp.call(this, ...args);
+        }
+    } else if (typeof temp === 'symbol') {
+        return Symbol(temp.description);
+    } else if (typeof temp === 'object') {
+        res = {};
+        // 这里总是忘
+        const symbolKeys = Object.getOwnPropertySymbols(temp);
+        symbolKeys.forEach((symbolKey) => {
+            res[symbolKey] = deepClone(temp[symbolKey]);
+        })
+
+        for(let i in temp) {
+            if (temp.hasOwnProperty(i)) {
+                res[i] = deepClone(temp[i]);
+            }
+        }
+    } else {
+        return temp;
+    }
+    return res;
+}
+
 
 function parse(data) {
     let number = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];

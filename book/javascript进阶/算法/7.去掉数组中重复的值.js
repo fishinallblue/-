@@ -16,3 +16,8 @@ var info = function(arr) {
 
 var arr = [1,13,24,11,11,14,1,2];
 console.log(info(arr));
+
+// 2024.12.1
+const removeMuti = (arr) => {
+    let 
+}

@@ -46,3 +46,16 @@ Function.prototype.bind = function(context = window, ...arggs) {
         return res;
     };
 }
+
+
+// 2024。12.1
+Function.prototype.bind = function (context = window, ...args){
+    let _this = this;
+
+    return function (...anotherArgs) {
+        context.fn = _this;
+        const res = context.fn(...args, ...anotherArgs);
+        delete context.fn;
+        return res;
+    }
+}

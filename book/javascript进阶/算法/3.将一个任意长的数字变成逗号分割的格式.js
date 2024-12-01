@@ -17,14 +17,31 @@ var parseToMoney = function(num) {
     return str;
 }
 
-function parseToMoney(num) {
-    num = parseFloat(num.toFixed(3));
-    let [integer, decimal] = String.prototype.split.call(num, '.');
-    integer = integer.replace(/\d(?=(\d{3})+$)/g, '$&,');
-    return integer + (decimal ? '.' + decimal : '');
-  }
   
 // 保留三位小数
+
+// 2024.12.1
+parseToMoney = (num) => {
+    let [start, end] = num.toString().split('.');
+    let newStart = start.split('').reverse().join('').replace(/(\d{3})/g, (match, $1) => {
+        return `${$1},`
+    }).split('').reverse().join('');
+    if (newStart.charAt(0) === ',') {
+        newStart = newStart.slice(1)
+    }
+    if (end) {
+        newStart = newStart + '.' + end;
+    } 
+    return newStart;
+}
+
+parseToMoney = (num) => {
+    num = parseFloat(num.toFixed(3));
+    let [integer, decimal] = String.prototype.split.call(num, '.');
+    // 不太懂这个正则怎么写出来的
+    integer = integer.replace(/\d(?=(\d{3})+$)/g, '$&,');
+    return integer + (decimal ? '.' + decimal : '');
+}
 console.log(parseToMoney(12434.56)); // return '1,234.56'
 console.log(parseToMoney(123456789)); // return '123,456,789'
 console.log(parseToMoney(1087654.321)); // return '1,087,654.321'

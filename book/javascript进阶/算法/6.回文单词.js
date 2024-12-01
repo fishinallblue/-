@@ -20,7 +20,6 @@ console.log(huiwen('a1aa1'));
 console.log(huiwen('1a1a1a1'));
 
 // 更加简单的写法
-
 function hui (str) {
     return str == str.split('').reverse().join('');
 }

@@ -15,3 +15,10 @@ function new1(Fn, ...args) {
     o.__proto__ = Fn.prototype // 这一步感觉理解还是不深入
     return Fn.call(o, ...args);
 }
+
+// 2024.12.1
+const new1 =  function(fn, ...args) {
+    let newObj = {};
+    newObj.__proto__ = fn;
+    
+}

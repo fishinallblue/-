@@ -102,3 +102,54 @@ function debounce(func, wait, immidate) {
         }, wait);
     }
 }
+
+// 2024.11.18
+// 节流 5 分钟内最多触发一次
+const throttle = (fn, delay) => {
+    let lastTime = 0;
+    return function(...args) {
+        const nowTime = Date.now();
+        if (nowTime - lastTime > delay) {
+            lastTime = nowTime;
+            fn(...args);
+        }
+    }
+}
+
+// 防抖 debounce
+const debounce = (fn, delay) => {
+    let timer = null;
+    return function(...args) {
+        let _this = this;
+        setTimeout(timer);
+        timer = setTimeout(() => {
+            fn.call(_this, ...args);
+        }, delay)
+    }
+}
+
+
+// 2024.12.1
+const debounce = (fn, delay) => {
+    let timer = null;
+    return function(...args) {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+            timer = null;
+            fn(...args);
+        }, delay);
+    }
+}
+
+const throttle = (fn, delay) => {
+    let lastTime = 0;
+    return function(...args) {
+        const nowTime = Date.now();
+        if (nowTime - lastTime > delay) {
+            lastTime = nowTime;
+            return fn(...args);
+        }
+    }
+}
